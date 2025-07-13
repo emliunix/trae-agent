@@ -135,7 +135,7 @@ class OpenAIClient(BaseLLMClient):
             self.trajectory_recorder.record_llm_interaction(
                 messages=messages,
                 response=llm_response,
-                provider="openai",
+                provider="openai_compatible",
                 model=model_parameters.model,
                 tools=tools,
             )
