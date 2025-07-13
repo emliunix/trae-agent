@@ -16,6 +16,7 @@ class LLMProvider(Enum):
     """Supported LLM providers."""
 
     OPENAI = "openai"
+    OPENAI_COMPATIBLE = "openai_compatible"
     ANTHROPIC = "anthropic"
     AZURE = "azure"
     OLLAMA = "ollama"
@@ -40,6 +41,11 @@ class LLMClient:
         match provider:
             case LLMProvider.OPENAI:
                 from .openai_client import OpenAIClient
+
+                self.client: BaseLLMClient = OpenAIClient(model_parameters)
+
+            case LLMProvider.OPENAI_COMPATIBLE:
+                from .openai_compatible_client import OpenAIClient
 
                 self.client: BaseLLMClient = OpenAIClient(model_parameters)
             case LLMProvider.ANTHROPIC:
